@@ -1,0 +1,22 @@
+{
+  "language": "English",
+  "name_field": {
+    "label": "Full name",
+    "placeholder": "Write full name"
+  },
+  "telephone_field": {
+    "label": "Telephone",
+    "placeholder": "Enter telephone number"
+  },
+  "email_field": {
+    "label": "Email",
+    "placeholder": "Enter email address"
+  },
+  "image_field": {
+    "label": "Image"
+  },
+  "submit_button": {
+    "label": "Confirm and Submit",
+    "button_text": "Submit"
+  }
+}

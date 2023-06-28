@@ -1,95 +1,93 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { useState } from "react";
+import en from "../../locales/en.json";
+import da from "../../locales/da.json";
+import styles from "./Home.module.scss"; // Import SCSS file
+import Image from "next/image";
 
 export default function Home() {
+  const [currentLanguage, setCurrentLanguage] = useState("en");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const translations = currentLanguage === "en" ? en : da;
+
+  const toggleLanguage = () => {
+    setCurrentLanguage(currentLanguage === "en" ? "da" : "en");
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(URL.createObjectURL(file));
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <>
+      <button className={styles.button} onClick={toggleLanguage}>
+        {currentLanguage === "en" ? "Switch to Danish" : "Switch to English"}
+      </button>
+      <h2>Current Language: {translations.language}</h2>
+      <form>
+        <label htmlFor="name-field">
+          <p>{translations.name_field.label}:</p>
+        </label>
+        <input
+          type="text"
+          name="name-field"
+          id="name-field"
+          placeholder={translations.name_field.placeholder}
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        <br />
+        <br />
+        <label htmlFor="phone-field">
+          <p>{translations.telephone_field.label}:</p>
+        </label>
+        <input
+          type="tel"
+          name="phone-field"
+          id="phone-field"
+          placeholder={translations.telephone_field.placeholder}
+        />
+        <br />
+        <br />
+        <label htmlFor="email-field">
+          <p>{translations.email_field.label}:</p>
+        </label>
+        <input
+          type="email"
+          name="email-field"
+          id="email-field"
+          placeholder={translations.email_field.placeholder}
+        />
+        <br />
+        <br />
+        <label htmlFor="image-field">
+          <p>{translations.image_field.label}:</p>
+        </label>
+        <input
+          type="file"
+          name="image-field"
+          id="image-field"
+          onChange={handleImageChange}
+        />
+        {selectedImage && (
+          <Image
+            className={styles.thumbnail}
+            src={selectedImage}
+            alt="Selected thumbnail"
+            width={150}
+            height={150}
+          />
+        )}
+        <br />
+        <br />
+        <label htmlFor="image-field">
+          <p>{translations.submit_button.label}:</p>
+        </label>
+        <input
+          className={styles.submitButton}
+          type="submit"
+          value={translations.submit_button.button_text}
+        />
+      </form>
+    </>
+  );
 }

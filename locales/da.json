@@ -1,0 +1,22 @@
+{
+  "language": "Danish",
+  "name_field": {
+    "label": "Fulde navn",
+    "placeholder": "Skriv fulde navn"
+  },
+  "telephone_field": {
+    "label": "Telefon",
+    "placeholder": "Indtast telefonnummer"
+  },
+  "email_field": {
+    "label": "Email",
+    "placeholder": "Indtast emailadresse"
+  },
+  "image_field": {
+    "label": "Billede"
+  },
+  "submit_button": {
+    "label": "Bekræft og Send",
+    "button_text": "Send"
+  }
+}
